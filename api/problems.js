@@ -1,4 +1,4 @@
-const { questionsForNode } = require('../server');
+const { questionsForNode } = require('../src/server/problems');
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
@@ -11,6 +11,6 @@ module.exports = async function handler(req, res) {
     res.setHeader('Cache-Control', 'no-store');
     return res.status(200).json({ source: '洛谷', problems });
   } catch (error) {
-    return res.status(502).json({ error: error.message });
+    return res.status(error.status || 502).json({ error: error.message });
   }
 };

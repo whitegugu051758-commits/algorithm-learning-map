@@ -1,9 +1,9 @@
-const { passedForUid } = require('../../server');
+const { passedForUid, isValidUid } = require('../../src/server/luogu');
 
 exports.handler = async event => {
   if (event.httpMethod !== 'GET') return reply(405, { error: 'Method not allowed' });
   const uid = String(event.queryStringParameters?.uid || '').trim();
-  if (!/^[1-9]\d{0,11}$/.test(uid)) return reply(400, { error: '请输入有效的洛谷用户 UID。' });
+  if (!isValidUid(uid)) return reply(400, { error: '请输入有效的洛谷用户 UID。' });
   try {
     return reply(200, await passedForUid(uid));
   } catch (error) {

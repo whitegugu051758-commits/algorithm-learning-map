@@ -1,0 +1,13 @@
+{
+  "name": "algorithm-learning-map",
+  "version": "1.1.0",
+  "private": true,
+  "description": "ACM 算法知识图谱、小测与本地学习记录",
+  "scripts": {
+    "check": "node --check server.js && node --check app.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

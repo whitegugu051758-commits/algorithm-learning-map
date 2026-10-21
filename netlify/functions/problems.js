@@ -1,4 +1,4 @@
-const { questionsForNode } = require('../../server');
+const { questionsForNode } = require('../../src/server/problems');
 
 exports.handler = async event => {
   if (event.httpMethod !== 'GET') return reply(405, { error: 'Method not allowed' });
@@ -11,7 +11,7 @@ exports.handler = async event => {
     );
     return reply(200, { source: '洛谷', problems });
   } catch (error) {
-    return reply(502, { error: error.message });
+    return reply(error.status || 502, { error: error.message });
   }
 };
 
